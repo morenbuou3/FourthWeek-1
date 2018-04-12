@@ -20,6 +20,7 @@ public class LibraryTest {
     public void setUp() throws Exception {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
+        Library.report.clear();
     }
 
     private String systemOut() {

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class Library {
 
     private static List<String> course = new ArrayList<>();
-    private static List<StudentInfo> report = new ArrayList<>();
+    static List<StudentInfo> report = new ArrayList<>();
 
     private static final Pattern patternName = Pattern.compile("^[\\u4E00-\\u9FA5A-Za-z]+$");
     private static final Pattern patternNumber = Pattern.compile("^[0-9]+$");
