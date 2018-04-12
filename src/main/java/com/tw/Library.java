@@ -101,20 +101,20 @@ public class Library {
             }
         }
 
-        System.out.println("成绩单");
-        System.out.println("姓名|数学|语文|英语|编程|平均分|总分");
-        System.out.println("========================");
+        System.out.print("成绩单\n");
+        System.out.print("姓名|数学|语文|英语|编程|平均分|总分\n");
+        System.out.print("========================\n");
         report.stream().filter(n -> inputList.contains(Integer.toString(n.getNumber()))).forEach(
-                n -> System.out.println(n.getName() + "|"
+                n -> System.out.print(n.getName() + "|"
                         + n.getGrades().get("数学") + "|"
                         + n.getGrades().get("语文") + "|"
                         + n.getGrades().get("英语") + "|"
                         + n.getGrades().get("编程") + "|"
                         + decimalFormat.format(n.getAverage()) + "|"
-                        + n.getTotal()));
-        System.out.println("========================");
-        System.out.println("全班总分平均数：" + decimalFormat.format(classAvg));
-        System.out.println("全班总分中位数：" + decimalFormat.format(classMid));
+                        + n.getTotal() + "\n"));
+        System.out.print("========================\n");
+        System.out.print("全班总分平均数：" + decimalFormat.format(classAvg) + "\n");
+        System.out.print("全班总分中位数：" + decimalFormat.format(classMid) + "\n");
 
         return true;
     }
