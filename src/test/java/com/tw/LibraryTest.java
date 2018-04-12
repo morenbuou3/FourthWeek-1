@@ -82,4 +82,48 @@ public class LibraryTest {
                 "全班总分中位数：330\r\n", systemOut());
     }
 
+    @Test
+    public void testReportTwoPeople() {
+        String s1 = "张三,123,数学:75,语文:95,英语:80,编程:80";
+        String s2 = "李四,125,数学:85,语文:80,英语:70,编程:90";
+        assertTrue(Library.addStudentInfo(Arrays.asList(s1.split(","))));
+        assertTrue(Library.addStudentInfo(Arrays.asList(s2.split(","))));
+        String s3 = "123,125";
+        assertTrue(Library.generateGrades(Arrays.asList(s3.split(","))));
+        assertEquals("学生张三的成绩被添加\n" +
+                "学生李四的成绩被添加\n" +
+                "成绩单\r\n" +
+                "姓名|数学|语文|英语|编程|平均分|总分\r\n" +
+                "========================\r\n" +
+                "张三|75|95|80|80|82.5|330\r\n" +
+                "李四|85|80|70|90|81.25|325\r\n" +
+                "========================\r\n" +
+                "全班总分平均数：327.5\r\n" +
+                "全班总分中位数：327.5\r\n", systemOut());
+    }
+
+    @Test
+    public void testReportMidAndTotal() {
+        String s1 = "张三,123,数学:75,语文:95,英语:80,编程:80";
+        String s2 = "李四,125,数学:85,语文:80,英语:70,编程:90";
+        String s3 = "赵五,127,数学:85,语文:85,英语:85,编程:85";
+        assertTrue(Library.addStudentInfo(Arrays.asList(s1.split(","))));
+        assertTrue(Library.addStudentInfo(Arrays.asList(s2.split(","))));
+        assertTrue(Library.addStudentInfo(Arrays.asList(s3.split(","))));
+        String s4 = "123,125,127";
+        assertTrue(Library.generateGrades(Arrays.asList(s4.split(","))));
+        assertEquals("学生张三的成绩被添加\n" +
+                "学生李四的成绩被添加\n" +
+                "学生赵五的成绩被添加\n" +
+                "成绩单\r\n" +
+                "姓名|数学|语文|英语|编程|平均分|总分\r\n" +
+                "========================\r\n" +
+                "张三|75|95|80|80|82.5|330\r\n" +
+                "李四|85|80|70|90|81.25|325\r\n" +
+                "赵五|85|85|85|85|85|340\r\n" +
+                "========================\r\n" +
+                "全班总分平均数：331.67\r\n" +
+                "全班总分中位数：330\r\n", systemOut());
+    }
+
 }

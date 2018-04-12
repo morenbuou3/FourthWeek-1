@@ -95,9 +95,9 @@ public class Library {
         int size = report.size();
         if (size != 0) {
             if (size % 2 == 0) {
-                classMid = (report.get(size / 2 - 1).getTotal() + report.get(size / 2).getTotal()) / 2.0;
+                classMid = report.stream().sorted(Comparator.comparing(StudentInfo::getTotal)).skip(size / 2 - 1).limit(2).mapToInt(StudentInfo::getTotal).average().getAsDouble();
             } else {
-                classMid = report.get(size / 2).getTotal();
+                classMid = report.stream().sorted(Comparator.comparing(StudentInfo::getTotal)).skip(size / 2).limit(1).mapToInt(StudentInfo::getTotal).sum();
             }
         }
 
@@ -110,8 +110,8 @@ public class Library {
                         + n.getGrades().get("语文") + "|"
                         + n.getGrades().get("英语") + "|"
                         + n.getGrades().get("编程") + "|"
-                        + n.getAverage() + "|"
-                        + decimalFormat.format(n.getTotal())));
+                        + decimalFormat.format(n.getAverage()) + "|"
+                        + n.getTotal()));
         System.out.println("========================");
         System.out.println("全班总分平均数：" + decimalFormat.format(classAvg));
         System.out.println("全班总分中位数：" + decimalFormat.format(classMid));
