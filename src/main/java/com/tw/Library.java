@@ -66,6 +66,7 @@ public class Library {
         if (!judgeStudentInfo(inputList)) {
             return false;
         }
+
         Map<String, Integer> grades = new HashMap<>();
         StudentInfo student = new StudentInfo();
         student.setName(inputList.get(0));
@@ -76,7 +77,9 @@ public class Library {
         });
         student.setGrades(grades);
         report.add(student);
+
         System.out.print("学生" + student.getName() + "的成绩被添加\n");
+
         return true;
     }
 
@@ -144,13 +147,13 @@ public class Library {
         if (inputList.size() != 6) {
             return false;
         }
-        if (!judgePattern(inputList.get(0).trim(), patternName)) return false;
-        if (!judgePattern(inputList.get(1).trim(), patternNumber)) return false;
+        if (!judgePattern(inputList.get(0), patternName)) return false;
+        if (!judgePattern(inputList.get(1), patternNumber)) return false;
         boolean flag = true;
         for (int i = 2; i < inputList.size(); i++) {
             String[] item = inputList.get(i).split(":");
-            if (!course.contains(item[0].trim())
-                    || !judgePattern(item[1].trim(), patternGrade)) {
+            if (!course.contains(item[0])
+                    || !judgePattern(item[1], patternGrade)) {
                 flag = false;
                 break;
             }
