@@ -13,7 +13,7 @@ public class Library {
     private static final Pattern patternNumber = Pattern.compile("^[0-9]+$");
     private static final Pattern patternGrade = Pattern.compile("^(\\d{1}|[1-9]\\d{1}|1[0-1]\\d{1}|100)$");
 
-    private static final DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
+    private static final DecimalFormat decimalFormat = new DecimalFormat("###################.##");
 
     static {
         course.add("数学");
@@ -111,7 +111,7 @@ public class Library {
                         + n.getGrades().get("英语") + "|"
                         + n.getGrades().get("编程") + "|"
                         + n.getAverage() + "|"
-                        + n.getTotal()));
+                        + decimalFormat.format(n.getTotal())));
         System.out.println("========================");
         System.out.println("全班总分平均数：" + decimalFormat.format(classAvg));
         System.out.println("全班总分中位数：" + decimalFormat.format(classMid));
