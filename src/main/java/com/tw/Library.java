@@ -84,7 +84,7 @@ public class Library {
     }
 
     public static boolean generateGrades(List<String> inputList) {
-        boolean flag = inputList.stream().allMatch(n -> judgePattern(n.trim(), patternNumber));
+        boolean flag = inputList.stream().allMatch(n -> judgePattern(n, patternNumber));
         if (!flag) {
             return false;
         }
