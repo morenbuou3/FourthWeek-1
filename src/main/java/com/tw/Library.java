@@ -1,5 +1,6 @@
 package com.tw;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -11,6 +12,8 @@ public class Library {
     private static final Pattern patternName = Pattern.compile("^[\\u4E00-\\u9FA5A-Za-z]+$");
     private static final Pattern patternNumber = Pattern.compile("^[0-9]+$");
     private static final Pattern patternGrade = Pattern.compile("^(\\d{1}|[1-9]\\d{1}|1[0-1]\\d{1}|100)$");
+
+    private static final DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
 
     static {
         course.add("数学");
@@ -31,7 +34,6 @@ public class Library {
             switch (inputStr) {
                 case "1":
                     printMenu("add");
-                    inputList = new ArrayList<>();
                     while (sc.hasNextLine()) {
                         String input = sc.nextLine();
                         inputList = Arrays.asList(input.split(","));
@@ -109,10 +111,10 @@ public class Library {
                         + n.getGrades().get("英语") + "|"
                         + n.getGrades().get("编程") + "|"
                         + n.getAverage() + "|"
-                        + n.getTotal() + "|"));
+                        + n.getTotal()));
         System.out.println("========================");
-        System.out.println("全班总分平均数：" + classAvg);
-        System.out.println("全班总分中位数：" + classMid);
+        System.out.println("全班总分平均数：" + decimalFormat.format(classAvg));
+        System.out.println("全班总分中位数：" + decimalFormat.format(classMid));
 
         return true;
     }

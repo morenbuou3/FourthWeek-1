@@ -14,7 +14,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class LibraryTest {
-    ByteArrayOutputStream outContent;
+    private ByteArrayOutputStream outContent;
 
     @Before
     public void setUp() throws Exception {
@@ -64,23 +64,22 @@ public class LibraryTest {
         String s5 = "123,125";
         assertTrue(Library.generateGrades(Arrays.asList(s5.split(","))));
     }
-/*    @Test
-    public void testSomeLibraryMethod() {
-        Library classUnderTest = new Library();
-        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
-    }
 
     @Test
-    public void testMockClass() throws Exception {
-        // you can mock concrete classes, not only interfaces
-        LinkedList mockedList = mock(LinkedList.class);
-
-        // stubbing appears before the actual execution
-        String value = "first";
-        when(mockedList.get(0)).thenReturn(value);
-
-        assertEquals(mockedList.get(0), value);
-
-    }*/
+    public void testReport() {
+        String s1 = "张三,123,数学:75,语文:95,英语:80,编程:80";
+        assertTrue(Library.addStudentInfo(Arrays.asList(s1.split(","))));
+        assertTrue(systemOut().endsWith("学生张三的成绩被添加\n"));
+        String s2 = "123,125";
+        assertTrue(Library.generateGrades(Arrays.asList(s2.split(","))));
+        assertEquals("学生张三的成绩被添加\n" +
+                "成绩单\r\n" +
+                "姓名|数学|语文|英语|编程|平均分|总分\r\n" +
+                "========================\r\n" +
+                "张三|75|95|80|80|82.5|330\r\n" +
+                "========================\r\n" +
+                "全班总分平均数：330\r\n" +
+                "全班总分中位数：330\r\n", systemOut());
+    }
 
 }
